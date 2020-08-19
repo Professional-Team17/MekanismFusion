@@ -47,7 +47,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import professionalteam17.mekanismfusion.proxy.CommonProxy;
 
-@Mod(modid = MekanismFusion.MODID, name = MekanismFusion.NAME, version = MekanismFusion.VERSION, acceptedMinecraftVersions = "1.12.2")
+@Mod(modid = MekanismFusion.MODID, name = MekanismFusion.NAME, version = MekanismFusion.VERSION, acceptedMinecraftVersions = "1.12.2", dependencies = "mekanismgenerators")
 public class MekanismFusion {
     public static final String MODID = "mekanismfusion";
     public static final String NAME = "MekanismFusion";
