@@ -45,12 +45,9 @@ public class MekanismFusion {
     static {
         MekanismFusionFluids.register();
     }
-
-    @SubscribeEvent
-    public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
-        event.getRegistry().register(new BinRecipe());
+    @EventHandler
+    public void MekanismFusioninit(FMLInitializationEvent event){
         addRecipesFusion();
-        GasConversionHandler.addDefaultGasMappings();
     }
     public static void addRecipesFusion(){
         //Chemical Infuser Recipes

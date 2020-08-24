@@ -7,77 +7,13 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
-
-plugins {
-    id 'org.ajoberstar.grgit' version '3.1.1'
-    id "com.matthewprenger.cursegradle" version "1.3.0"
-    id 'java'
-    id 'idea'
-    id 'maven'
-    id 'maven-publish'
-}
-
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-repositories {
-    maven {
-        name 'ForgeFS'
-        url 'https://files.minecraftforge.net/maven'
-    }
-    maven {
-        name 'amadornes'
-        url 'https://maven.amadornes.com/'
-    }
-    maven {
-        name 'prog'
-        url 'http://dvs1.progwml6.com/files/maven'
-    }
-    maven {
-        name 'tesla'
-        url 'https://maven.mcmoddev.com'
-    }
-    maven {
-        name 'curseforge'
-        url 'https://minecraft.curseforge.com/api/maven/'
-    }
-    maven {
-        name 'opencomputers'
-        url 'http://maven.cil.li/'
-    }
-    maven {
-        name 'hwyla'
-        url 'https://tehnut.info/maven'
-    }
-    maven {
-        name 'CoFH Maven'
-        url 'https://maven.covers1624.net'
-    }
-    maven {
-        name 'buildcraft'
-        url 'https://mod-buildcraft.com/maven/'
-    }
-    maven {
-        name 'tterrag'
-        url 'https://maven.tterrag.com/'
-    }
-    maven {
-        name 'ic2'
-        url 'http://maven.ic2.player.to'
-    }
-    maven {
-        name 'BlameJared - Crafttweaker'
-        url 'https://maven.blamejared.com/'
-    }
-    maven {
-        name 'thiakil'
-        url 'https://maven.thiakil.com'
-    }
-}
 
-version = "1.12.2-alpha1.0"
-group = "professionalteam17.mekanismfusion" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "mekanismfusion"
+version = "1.0"
+group = "com.yourname.modid" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "modid"
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
@@ -98,32 +34,6 @@ minecraft {
 }
 
 dependencies {
-    compileOnly "org.jetbrains:annotations:${jb_annotations}"
-
-    deobfCompile "MCMultiPart2:MCMultiPart:${mcmp_version}"
-    compileOnly "mezz.jei:jei_${minecraft_version}:${jei_version}:api"
-    runtime "mezz.jei:jei_${minecraft_version}:${jei_version}"
-    compileOnly "net.darkhax.tesla:Tesla-${minecraft_version}:${tesla_version}"
-    compileOnly "inventory-tweaks:InventoryTweaks:${invtweak_version}:api"
-    compileOnly "li.cil.oc:OpenComputers:MC${minecraft_version}-${opencomputers_version}:api"
-    // Not updated yet
-    compileOnly "mcp.mobius.waila:Hwyla:${hwyla_version}:api"
-    deobfCompile "cofh:RedstoneFlux:1.12-${redstoneflux_version}:universal"
-    compileOnly "com.mod-buildcraft:buildcraft-api:${buildcraft_version}"
-    compileOnly "team.chisel.ctm:CTM:MC${minecraft_version}-${ctm_version}:api"
-    runtime "team.chisel.ctm:CTM:MC${minecraft_version}-${ctm_version}"
-    compileOnly "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
-    compileOnly("CraftTweaker2:CraftTweaker2-API:${crafttweaker_version}") {
-        exclude module: "asm-debug-all"
-    }
-    deobfCompile("CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-${crafttweaker_version}") {
-        exclude module: "asm-debug-all"
-    }
-    compileOnly "dan200.computercraft:ComputerCraft:${computercraft_version}:api"
-    compileOnly "mcjty.theoneprobe:TheOneProbe-1.12:${top_version}:api"
-    compileOnly("appeng:appliedenergistics2:${ae2_version}:api") {
-        exclude module: "jei_1.12.2"
-    }
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"
