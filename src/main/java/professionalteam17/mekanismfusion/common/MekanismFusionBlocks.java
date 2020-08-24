@@ -10,10 +10,9 @@ import mekanism.common.MekanismBlocks;
 
 @GameRegistry.ObjectHolder(MekanismFusion.MODID)
 public class MekanismFusionBlocks{
-    public static Block FusionOreBlock = new BlockOre();
 
     public static void registerBlocks(IForgeRegistry<Block> registry){
-        registry.register(init(FusionOreBlock, "OreBlock"));
+
     }
 
     public static Block init(Block block, String name) {

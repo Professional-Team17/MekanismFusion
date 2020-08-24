@@ -1,13 +1,16 @@
 package professionalteam17.mekanismfusion.common;
 
 import mekanism.api.gas.GasStack;
+import mekanism.common.MekanismBlocks;
 import mekanism.common.MekanismFluids;
+import mekanism.common.MekanismItems;
 import mekanism.common.block.states.BlockStateMachine;
 import mekanism.common.config.MekanismConfig;
-import mekanism.common.recipe.BinRecipe;
-import mekanism.common.recipe.GasConversionHandler;
 import mekanism.common.recipe.RecipeHandler;
-import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -36,6 +39,7 @@ public class MekanismFusion {
     @EventHandler
     public static void init(FMLInitializationEvent event){
         proxy.init(event);
+        addRecipesFusion();
     }
     @EventHandler
     public static void postInit(FMLPostInitializationEvent event){
@@ -45,30 +49,38 @@ public class MekanismFusion {
     static {
         MekanismFusionFluids.register();
     }
-    @EventHandler
-    public void MekanismFusioninit(FMLInitializationEvent event){
-        addRecipesFusion();
+
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+        // Register items and itemBlocks
+        MekanismFusionItems.registerItems(event.getRegistry());
+        //MekanismBlocks.registerItemBlocks(event.getRegistry());
+        //Integrate certain OreDictionary recipes
+        //registerOreDict();
     }
+
     public static void addRecipesFusion(){
+
         //Chemical Infuser Recipes
-        if (MekanismConfig.current().general.machinesManager.isEnabled(BlockStateMachine.MachineType.CHEMICAL_INJECTION_CHAMBER)) {
-            RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFluids.Deuterium, 1), new GasStack(MekanismFluids.Deuterium, 1), new GasStack(MekanismFusionFluids.DDFusionFuel, 2));
-            RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFluids.Deuterium, 1), new GasStack(MekanismFusionFluids.Helium3, 1), new GasStack(MekanismFusionFluids.DHe3FusionFuel, 2));
-            RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFusionFluids.Helium4, 1), new GasStack(MekanismFusionFluids.EnrichedHelium, 2), new GasStack(MekanismFusionFluids.He4FusionFuel, 3));
-            RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFusionFluids.EnrichedHydrogen, 1), new GasStack(MekanismFusionFluids.EnrichedHydrogen, 1), new GasStack(MekanismFusionFluids.HFusionFuel, 2));
-            RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFluids.Oxygen, 1), new GasStack(MekanismFluids.Oxygen, 1), new GasStack(MekanismFusionFluids.EnrichedHydrogen, 2));
-            RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFusionFluids.Carbon, 1), new GasStack(MekanismFusionFluids.Carbon, 1), new GasStack(MekanismFusionFluids.CFusionFuel, 2));
-            RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFusionFluids.Silicon, 1), new GasStack(MekanismFusionFluids.Silicon, 1), new GasStack(MekanismFusionFluids.SiFusionFuel, 2));
+        RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFluids.Deuterium, 1), new GasStack(MekanismFluids.Deuterium, 1), new GasStack(MekanismFusionFluids.DDFusionFuel, 2));
+        RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFluids.Deuterium, 1), new GasStack(MekanismFusionFluids.Helium3, 1), new GasStack(MekanismFusionFluids.DHe3FusionFuel, 2));
+        RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFusionFluids.Helium4, 1), new GasStack(MekanismFusionFluids.EnrichedHelium, 2), new GasStack(MekanismFusionFluids.He4FusionFuel, 3));
+        RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFusionFluids.EnrichedHydrogen, 1), new GasStack(MekanismFusionFluids.EnrichedHydrogen, 1), new GasStack(MekanismFusionFluids.HFusionFuel, 2));
+        RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFluids.Oxygen, 1), new GasStack(MekanismFluids.Oxygen, 1), new GasStack(MekanismFusionFluids.EnrichedHydrogen, 2));
+        RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFusionFluids.Carbon, 1), new GasStack(MekanismFusionFluids.Carbon, 1), new GasStack(MekanismFusionFluids.CFusionFuel, 2));
+        RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFusionFluids.Silicon, 1), new GasStack(MekanismFusionFluids.Silicon, 1), new GasStack(MekanismFusionFluids.SiFusionFuel, 2));
 
-            RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFluids.Hydrogen, 1), new GasStack(MekanismFluids.Hydrogen, 1), new GasStack(MekanismFusionFluids.OFusionFuel, 2));
-            RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFusionFluids.Helium4, 1), new GasStack(MekanismFusionFluids.Helium4, 1), new GasStack(MekanismFusionFluids.EnrichedHelium, 2));
+        RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFluids.Hydrogen, 1), new GasStack(MekanismFluids.Hydrogen, 1), new GasStack(MekanismFusionFluids.OFusionFuel, 2));
+        RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFusionFluids.Helium4, 1), new GasStack(MekanismFusionFluids.Helium4, 1), new GasStack(MekanismFusionFluids.EnrichedHelium, 2));
 
-        }
+        RecipeHandler.addChemicalCrystallizerRecipe(new GasStack(MekanismFusionFluids.Silicon, 200), new ItemStack(MekanismFusionItems.CrystalSilicon, 1, 0));
+        RecipeHandler.addChemicalCrystallizerRecipe(new GasStack(MekanismFusionFluids.Iron, 200), new ItemStack(MekanismFusionItems.CrystalIron, 1, 0));
 
-        if (MekanismConfig.current().general.machinesManager.isEnabled(BlockStateMachine.MachineType.ELECTROLYTIC_SEPARATOR)) {
-            RecipeHandler.addElectrolyticSeparatorRecipe(FluidRegistry.getFluidStack("lava", 2), 2 * MekanismConfig.current().general.FROM_H2.val(),
-                    new GasStack(MekanismFusionFluids.Silicon, 1), new GasStack(MekanismFluids.Oxygen, 2));
-        }
+        RecipeHandler.addCrusherRecipe(new ItemStack(MekanismFusionItems.CrystalIron),new ItemStack(MekanismItems.Dust,1,0));
+
+        RecipeHandler.addChemicalDissolutionChamberRecipe(new ItemStack(Blocks.COAL_ORE,1),new GasStack(MekanismFusionFluids.DirtyCarbonOreGas, 1000));
+        RecipeHandler.addChemicalWasherRecipe(new GasStack(MekanismFusionFluids.DirtyCarbonOreGas, 1), new GasStack(MekanismFusionFluids.CleanCarbonOreGas, 1));
+        RecipeHandler.addChemicalCrystallizerRecipe(new GasStack(MekanismFusionFluids.CleanCarbonOreGas, 100), new ItemStack(MekanismFusionItems.CrystalCarbon, 1, 0));
 
     }
 }
